@@ -1,0 +1,15 @@
+server:
+  port: 8766
+spring:
+  application:
+    name: service-redis
+  redis:
+    database: 0
+    host: 122.112.216.37
+    port: 6379
+    password:
+    timeout:
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
