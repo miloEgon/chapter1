@@ -1,10 +1,12 @@
 package com.forezp.serviceredis.controller;
 
 import com.forezp.serviceredis.pojo.User;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -25,27 +27,26 @@ public class UserController {
     @Autowired
     private RedisTemplate<Serializable, Object> redisTemplate;
 
-    private final HashOperations<Serializable, Object, Object> vo = redisTemplate.opsForHash();
-
     public User initUser() {
         User user1 = new User(1L,"milo","123456","张三","17718152603");
         return user1;
     }
 
     @RequestMapping("/setUser")
-    public void setUserInfo() {
+    public String setUserInfo() {
         User user = initUser();
         Map<String,Object> map = new HashMap<>();
         map.put("userName",user.getUserName());
         map.put("trueName",user.getTrueName());
         map.put("password",user.getPassword());
         map.put("phone",user.getPhone());
-        vo.putAll(user.getId(),map);
+        redisTemplate.opsForHash().putAll(user.getId().toString(),map);
+        return "保存成功";
     }
 
     @RequestMapping("/getUser")
-    public Object getUserInfo(Long id) {
-        return vo.entries(id);
+    public Object getUserInfo(@RequestParam String id) {
+        return redisTemplate.opsForHash().entries(id);
     }
 
 }
