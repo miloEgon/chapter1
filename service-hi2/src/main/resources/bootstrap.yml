@@ -7,3 +7,30 @@ server:
 spring:
   application:
     name: service-hi
+  profiles:
+    active: dev
+my:
+  name: cheham
+  age: 1
+  number: ${random.int}
+  uuid: ${random.uuid}
+  max: ${random.int(10)}
+  value: ${random.value}
+  greeting: hi, I'm ${my.name}
+info:
+  head: head
+  body: body
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: false
+  server:
+    port: 9001
+    security:
+      enabled: false
