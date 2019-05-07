@@ -1,0 +1,11 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://122.112.216.37:3306/demo?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password: Xjq/dj2019
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true

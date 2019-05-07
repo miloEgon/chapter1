@@ -4,7 +4,7 @@ spring:
   application:
     name: service-redis
   redis:
-    database: 0
+    database: 1
     host: 122.112.216.37
     port: 6379
     password:
