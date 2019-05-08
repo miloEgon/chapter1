@@ -7,8 +7,9 @@ server:
 spring:
   application:
     name: service-feign
+  main:
+    allow-bean-definition-overriding: true
 feign:
   hystrix:
     enabled: true
-
 
